@@ -1,0 +1,33 @@
+程序版本Ubuntu16.04+kinetic
+该package利用订阅控制小海龟运动的cmd_vel话题，读取键盘方向键。
+然后通过串口发送控制指令到电机控制器，控制电机前进后退转向。
+是学习ROS控制机器人运动的一个基础例程。
+
+使用前需安装ros的serial工具包
+sudo apt-get install ros-kinetic-serial
+
+
+关于串口：
+程序使用的是电脑主板自带的9针232串口，可以根据自己具体串口调整程序
+查看设备dmesg，如果使用USB转串口一般设备号是ttyUSB0
+我用的是Ubuntu16.04实际测试USB转串口芯片ch340和PL2302都可以直接识别
+可以先安装cutecom进行串口调试，看看是否可用，该工具是窗口界面，比较方便
+安装sudo apt-get install cutecom
+安装完成运行要root权限才能读取串口
+sudo cutecom
+
+程序使用的是serial_example_node1节点，另外一个节点listen1没有用到
+将代码解压到自己的工作空间后编译
+然后启动serial_example_node1节点和turtle_teleop_key节点
+rosrun serial_msgs serial_example_node1
+rosrun turtlesim turtle_teleop_key
+保证当前窗口在key读取命令窗口，按键盘方向键，串口节点会收到数据，并串口发送数据。
+
+如果串口启动提示失败，提示Unable to open port，可能是权限问题需运行命令
+sudo chmod 666 /dev/ttyS0
+
+节点读取串口做了5个字节的测试
+发多个字节需自己修改读取字节数
+
+
+
