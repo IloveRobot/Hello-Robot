@@ -112,7 +112,9 @@ include_directories(
 )
 
 add_executable(serial_example_node1 src/serial_example_node1.cpp)
+
 target_link_libraries(serial_example_node1  ${catkin_LIBRARIES})
+
 add_dependencies(serial_example_node1 serial_msgs_gencpp)
 ###########
 ## Build ##
