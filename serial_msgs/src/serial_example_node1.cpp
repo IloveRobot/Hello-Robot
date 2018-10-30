@@ -20,7 +20,7 @@ const unsigned char YZ[] = {0xAA,0x7F,0x01,0x00,0x01,0x01,0x01,0x00,0x00,0x02,0x
 const unsigned char header[7] = {0xAA,0x7F,0x01,0x00,0x01,0x01,0x01};
 const unsigned char ender = 0x55;
 
-const double ROBOT_RADIUS = 100.00; //轮距半径 mm
+const double ROBOT_RADIUS = 300.00; //轮距半径 mm
 const double ROBOT_LENGTH = 210.50;
 
 serial::Serial ser;
@@ -131,7 +131,7 @@ void writeSpeed(double RobotV, double RobotY)
 
 void callback(const geometry_msgs::Twist& cmd_vel)
 {
-    velocity = cmd_vel.linear.x * 1000;
+    velocity = cmd_vel.linear.x * 3000;
 	YawRate = cmd_vel.angular.z;
 //    ROS_INFO("Received:[%f,%f]",velocity,YawRate);
 
